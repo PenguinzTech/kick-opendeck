@@ -1,0 +1,86 @@
+{
+    "Name": "Kick Stream Control",
+    "Description": "Control your Kick stream directly from your deck. Send chat messages, view live viewers, toggle slow mode, manage bans and mutes.",
+    "Author": "penguin",
+    "Version": "0.1.0",
+    "Category": "Kick",
+    "Icon": "icon",
+    "CategoryIcon": "icon",
+    "OS": [
+        { "Platform": "windows" },
+        { "Platform": "mac" },
+        { "Platform": "linux" }
+    ],
+    "CodePaths": {
+        "x86_64-pc-windows-msvc": "kick-opendeck-x86_64-pc-windows-msvc.exe",
+        "x86_64-apple-darwin": "kick-opendeck-x86_64-apple-darwin",
+        "aarch64-apple-darwin": "kick-opendeck-aarch64-apple-darwin",
+        "x86_64-unknown-linux-gnu": "kick-opendeck-x86_64-unknown-linux-gnu",
+        "aarch64-unknown-linux-gnu": "kick-opendeck-aarch64-unknown-linux-gnu"
+    },
+    "CodePathWin": "kick-opendeck-x86_64-pc-windows-msvc.exe",
+    "CodePathMac": "kick-opendeck-x86_64-apple-darwin",
+    "CodePathLin": "kick-opendeck-x86_64-unknown-linux-gnu",
+    "PropertyInspectorPath": "pi/simple.html",
+    "Actions": [
+        {
+            "UUID": "dev.penguin.kick.chatmessage",
+            "Name": "Chat Message",
+            "Icon": "actions/chat_message",
+            "Tooltip": "Send a preset message to your Kick chat",
+            "PropertyInspectorPath": "pi/chat_message.html",
+            "Controllers": ["Keypad"],
+            "States": [{ "Image": "actions/chat_message" }]
+        },
+        {
+            "UUID": "dev.penguin.kick.viewercount",
+            "Name": "Viewer Count",
+            "Icon": "actions/viewer_count",
+            "Tooltip": "Display current live viewer count",
+            "PropertyInspectorPath": "pi/simple.html",
+            "Controllers": ["Keypad"],
+            "SupportedInMultiActions": false,
+            "States": [{ "Image": "actions/viewer_count" }]
+        },
+        {
+            "UUID": "dev.penguin.kick.slowchat",
+            "Name": "Slow Mode",
+            "Icon": "actions/slow_chat_0",
+            "Tooltip": "Toggle slow mode in your chat",
+            "PropertyInspectorPath": "pi/slow_chat.html",
+            "Controllers": ["Keypad"],
+            "DisableAutomaticStates": true,
+            "States": [
+                { "Image": "actions/slow_chat_0", "Name": "Activate" },
+                { "Image": "actions/slow_chat_1", "Name": "Deactivate" }
+            ]
+        },
+        {
+            "UUID": "dev.penguin.kick.banuser",
+            "Name": "Ban User",
+            "Icon": "actions/ban_user",
+            "Tooltip": "Ban a user from your channel",
+            "PropertyInspectorPath": "pi/ban_user.html",
+            "Controllers": ["Keypad"],
+            "States": [{ "Image": "actions/ban_user" }]
+        },
+        {
+            "UUID": "dev.penguin.kick.unbanuser",
+            "Name": "Unban User",
+            "Icon": "actions/unban_user",
+            "Tooltip": "Unban a user from your channel",
+            "PropertyInspectorPath": "pi/unban_user.html",
+            "Controllers": ["Keypad"],
+            "States": [{ "Image": "actions/unban_user" }]
+        },
+        {
+            "UUID": "dev.penguin.kick.muteuser",
+            "Name": "Mute User",
+            "Icon": "actions/mute_user",
+            "Tooltip": "Mute a user in your channel",
+            "PropertyInspectorPath": "pi/mute_user.html",
+            "Controllers": ["Keypad"],
+            "States": [{ "Image": "actions/mute_user" }]
+        }
+    ]
+}
