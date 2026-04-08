@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72">
+  <rect width="72" height="72" rx="8" fill="#1a1a2e"/>
+  <!-- Person head -->
+  <circle cx="32" cy="20" r="8" fill="none" stroke="#ffffff" stroke-width="2.5"/>
+  <!-- Person body -->
+  <path d="M 16 52 Q 16 36 32 36 Q 48 36 48 52" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- Green check badge -->
+  <circle cx="54" cy="52" r="10" fill="#53fc18" stroke="#ffffff" stroke-width="2"/>
+  <path d="M 48 52 L 52 57 L 60 46" stroke="#1a1a2e" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

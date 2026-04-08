@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72">
+  <rect width="72" height="72" rx="8" fill="#1a1a2e"/>
+  <ellipse cx="36" cy="32" rx="18" ry="10" fill="none" stroke="#53fc18" stroke-width="2.5"/>
+  <circle cx="36" cy="32" r="6" fill="none" stroke="#53fc18" stroke-width="2"/>
+  <circle cx="36" cy="32" r="3" fill="#53fc18"/>
+  <path d="M 20 24 Q 28 18 36 18 Q 44 18 52 24" stroke="#53fc18" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M 20 40 Q 28 46 36 46 Q 44 46 52 40" stroke="#53fc18" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <text x="36" y="58" font-size="10" fill="#53fc18" text-anchor="middle" font-family="Arial" font-weight="bold">VIEWERS</text>
+</svg>

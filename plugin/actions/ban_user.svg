@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72">
+  <rect width="72" height="72" rx="8" fill="#1a1a2e"/>
+  <!-- Person head -->
+  <circle cx="32" cy="20" r="8" fill="none" stroke="#ffffff" stroke-width="2.5"/>
+  <!-- Person body -->
+  <path d="M 16 52 Q 16 36 32 36 Q 48 36 48 52" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- Red X badge -->
+  <circle cx="54" cy="52" r="10" fill="#ef4444" stroke="#ffffff" stroke-width="2"/>
+  <line x1="48" y1="46" x2="60" y2="58" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="60" y1="46" x2="48" y2="58" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+</svg>
