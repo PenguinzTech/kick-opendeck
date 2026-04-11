@@ -24,6 +24,15 @@
     "PropertyInspectorPath": "pi/simple.html",
     "Actions": [
         {
+            "UUID": "io.pngz.kick.setup",
+            "Name": "Kick Setup",
+            "Icon": "actions/chat_message",
+            "Tooltip": "Configure Kick authentication. Press to manually refresh your auth token.",
+            "PropertyInspectorPath": "pi/auth.html",
+            "Controllers": ["Keypad"],
+            "States": [{ "Image": "actions/chat_message" }]
+        },
+        {
             "UUID": "io.pngz.kick.chatmessage",
             "Name": "Chat Message",
             "Icon": "actions/chat_message",

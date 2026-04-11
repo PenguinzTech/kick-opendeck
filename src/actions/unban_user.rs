@@ -12,7 +12,9 @@ impl Action for UnbanUserAction {
     const UUID: &'static str = "io.pngz.kick.unbanuser";
 
     async fn will_appear(&self, instance: &Instance, settings: &Self::Settings) -> OpenActionResult<()> {
-        if let Some(l) = &settings.button_label { crate::auth_handler::set_bold_title(instance, Some(l.as_str())).await?; }
+        use crate::auth_handler::{restore_title, set_button_image};
+        restore_title(instance, settings.button_label.as_deref()).await?;
+        set_button_image(instance, settings.button_image.as_deref()).await?;
         Ok(())
     }
 

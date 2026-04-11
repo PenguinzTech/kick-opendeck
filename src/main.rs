@@ -11,6 +11,7 @@ use global_handler::KickGlobalHandler;
 use simplelog::{Config, LevelFilter, TermLogger, TerminalMode, ColorChoice};
 
 use crate::actions::{
+    setup::SetupAction,
     chat_message::ChatMessageAction,
     viewer_count::ViewerCountAction,
     slow_chat::SlowChatAction,
@@ -30,6 +31,7 @@ async fn main() -> OpenActionResult<()> {
 
     set_global_event_handler(Box::leak(Box::new(KickGlobalHandler)));
 
+    register_action(SetupAction).await;
     register_action(ChatMessageAction).await;
     register_action(ViewerCountAction).await;
     register_action(SlowChatAction).await;

@@ -1,3 +1,4 @@
+pub mod setup;
 pub mod chat_message;
 pub mod viewer_count;
 pub mod slow_chat;

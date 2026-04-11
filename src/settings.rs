@@ -1,4 +1,5 @@
 use serde::{Deserialize, Serialize};
+use std::collections::HashMap;
 use std::sync::LazyLock;
 use tokio::sync::RwLock;
 
@@ -38,6 +39,17 @@ impl GlobalSettings {
 pub static SETTINGS: LazyLock<RwLock<GlobalSettings>> =
     LazyLock::new(|| RwLock::new(GlobalSettings::default()));
 
+pub static TITLE_CACHE: std::sync::LazyLock<tokio::sync::RwLock<HashMap<String, String>>> =
+    std::sync::LazyLock::new(|| tokio::sync::RwLock::new(HashMap::new()));
+
+pub async fn cache_title(instance_id: &str, title: &str) {
+    TITLE_CACHE.write().await.insert(instance_id.to_string(), title.to_string());
+}
+
+pub async fn get_cached_title(instance_id: &str) -> Option<String> {
+    TITLE_CACHE.read().await.get(instance_id).cloned()
+}
+
 pub async fn save_settings(settings: GlobalSettings) -> openaction::OpenActionResult<()> {
     *SETTINGS.write().await = settings.clone();
     openaction::set_global_settings(&settings).await
@@ -53,6 +65,8 @@ pub struct ChatMessageSettings {
     pub message: String,
     #[serde(default)]
     pub button_label: Option<String>,
+    #[serde(default)]
+    pub button_image: Option<String>,
 }
 
 /// Settings for Slow Chat action
@@ -61,11 +75,13 @@ pub struct SlowChatSettings {
     pub slow_mode_seconds: u32,
     #[serde(default)]
     pub button_label: Option<String>,
+    #[serde(default)]
+    pub button_image: Option<String>,
 }
 
 impl Default for SlowChatSettings {
     fn default() -> Self {
-        Self { slow_mode_seconds: 30, button_label: None }
+        Self { slow_mode_seconds: 30, button_label: None, button_image: None }
     }
 }
 
@@ -77,6 +93,8 @@ pub struct BanUserSettings {
     pub ban_duration_minutes: Option<u32>,
     #[serde(default)]
     pub button_label: Option<String>,
+    #[serde(default)]
+    pub button_image: Option<String>,
 }
 
 /// Settings for Unban User action
@@ -85,6 +103,8 @@ pub struct UnbanUserSettings {
     pub target_username: String,
     #[serde(default)]
     pub button_label: Option<String>,
+    #[serde(default)]
+    pub button_image: Option<String>,
 }
 
 /// Settings for Mute User action
@@ -93,6 +113,8 @@ pub struct MuteUserSettings {
     pub target_username: String,
     #[serde(default)]
     pub button_label: Option<String>,
+    #[serde(default)]
+    pub button_image: Option<String>,
 }
 
 /// Settings for actions with no configuration (viewer_count)
@@ -100,4 +122,6 @@ pub struct MuteUserSettings {
 pub struct EmptySettings {
     #[serde(default)]
     pub button_label: Option<String>,
+    #[serde(default)]
+    pub button_image: Option<String>,
 }

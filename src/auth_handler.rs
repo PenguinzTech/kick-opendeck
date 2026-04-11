@@ -8,6 +8,10 @@ pub async fn set_bold_title(instance: &Instance, title: Option<&str>) -> OpenAct
     match title.filter(|t| !t.is_empty()) {
         None => instance.set_title(None::<&str>, None).await,
         Some(t) => {
+            crate::settings::cache_title(&instance.instance_id, t).await;
+            let multiline = t.contains('\n');
+            let font_size = if multiline { 10 } else { 14 };
+            let title_alignment = if multiline { "middle" } else { "bottom" };
             send_arbitrary_json(json!({
                 "event": "setTitle",
                 "context": instance.instance_id,
@@ -15,16 +19,41 @@ pub async fn set_bold_title(instance: &Instance, title: Option<&str>) -> OpenAct
                     "title": t,
                     "titleParameters": {
                         "fontFamily": "",
-                        "fontSize": 14,
+                        "fontSize": font_size,
                         "fontStyle": "Bold",
                         "fontUnderline": false,
                         "showTitle": true,
-                        "titleAlignment": "bottom",
+                        "titleAlignment": title_alignment,
                         "titleColor": "#ffffff"
                     }
                 }
             }))
             .await
+        }
+    }
+}
+
+pub async fn restore_title(instance: &Instance, label_from_settings: Option<&str>) -> OpenActionResult<()> {
+    if let Some(l) = label_from_settings.filter(|t| !t.is_empty()) {
+        return set_bold_title(instance, Some(l)).await;
+    }
+    if let Some(cached) = crate::settings::get_cached_title(&instance.instance_id).await {
+        if !cached.is_empty() {
+            return set_bold_title(instance, Some(&cached)).await;
+        }
+    }
+    Ok(())
+}
+
+pub async fn set_button_image(instance: &Instance, image_data: Option<&str>) -> OpenActionResult<()> {
+    match image_data.filter(|s| !s.is_empty()) {
+        None => Ok(()),
+        Some(data) => {
+            send_arbitrary_json(json!({
+                "event": "setImage",
+                "context": instance.instance_id,
+                "payload": { "image": data, "target": 0 }
+            })).await
         }
     }
 }
@@ -78,12 +107,21 @@ pub async fn handle_auth_message(
         }
         "set_title" => {
             let raw = payload.get("title").and_then(|t| t.as_str()).unwrap_or("");
-            let title: String = raw.chars().take(BUTTON_LABEL_MAX).collect();
+            let title: String = raw
+                .lines()
+                .take(2)
+                .map(|line| line.chars().take(BUTTON_LABEL_MAX).collect::<String>())
+                .collect::<Vec<_>>()
+                .join("\n");
             set_bold_title(instance, if title.is_empty() { None } else { Some(&title) }).await?;
             instance.send_to_property_inspector(json!({
                 "event": "title_set",
                 "title": title
             })).await?;
+        }
+        "set_image" => {
+            let image_data = payload.get("image").and_then(|v| v.as_str()).unwrap_or("");
+            set_button_image(instance, if image_data.is_empty() { None } else { Some(image_data) }).await?;
         }
         _ => {}
     }

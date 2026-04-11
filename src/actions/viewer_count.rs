@@ -23,7 +23,8 @@ impl Action for ViewerCountAction {
     type Settings = EmptySettings;
     const UUID: &'static str = "io.pngz.kick.viewercount";
 
-    async fn will_appear(&self, instance: &Instance, _settings: &Self::Settings) -> OpenActionResult<()> {
+    async fn will_appear(&self, instance: &Instance, settings: &Self::Settings) -> OpenActionResult<()> {
+        crate::auth_handler::set_button_image(instance, settings.button_image.as_deref()).await?;
         match get_valid_token().await {
             Some((token, user_id)) => {
                 match kick_api::get_viewer_count(&token, &user_id).await {
