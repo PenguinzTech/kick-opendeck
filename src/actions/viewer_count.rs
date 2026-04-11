@@ -21,7 +21,7 @@ fn format_viewers(n: u64) -> String {
 #[async_trait]
 impl Action for ViewerCountAction {
     type Settings = EmptySettings;
-    const UUID: &'static str = "dev.penguin.kick.viewercount";
+    const UUID: &'static str = "io.pngz.kick.viewercount";
 
     async fn will_appear(&self, instance: &Instance, _settings: &Self::Settings) -> OpenActionResult<()> {
         match get_valid_token().await {

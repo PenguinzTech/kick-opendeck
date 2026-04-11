@@ -9,7 +9,7 @@ pub struct BanUserAction;
 #[async_trait]
 impl Action for BanUserAction {
     type Settings = BanUserSettings;
-    const UUID: &'static str = "dev.penguin.kick.banuser";
+    const UUID: &'static str = "io.pngz.kick.banuser";
 
     async fn will_appear(&self, instance: &Instance, settings: &Self::Settings) -> OpenActionResult<()> {
         if let Some(l) = &settings.button_label { crate::auth_handler::set_bold_title(instance, Some(l.as_str())).await?; }

@@ -24,7 +24,7 @@
     "PropertyInspectorPath": "pi/simple.html",
     "Actions": [
         {
-            "UUID": "dev.penguin.kick.chatmessage",
+            "UUID": "io.pngz.kick.chatmessage",
             "Name": "Chat Message",
             "Icon": "actions/chat_message",
             "Tooltip": "Send a preset message to your Kick chat",
@@ -33,7 +33,7 @@
             "States": [{ "Image": "actions/chat_message" }]
         },
         {
-            "UUID": "dev.penguin.kick.viewercount",
+            "UUID": "io.pngz.kick.viewercount",
             "Name": "Viewer Count",
             "Icon": "actions/viewer_count",
             "Tooltip": "Display current live viewer count",
@@ -43,7 +43,7 @@
             "States": [{ "Image": "actions/viewer_count" }]
         },
         {
-            "UUID": "dev.penguin.kick.slowchat",
+            "UUID": "io.pngz.kick.slowchat",
             "Name": "Slow Mode",
             "Icon": "actions/slow_chat_0",
             "Tooltip": "Toggle slow mode in your chat",
@@ -56,7 +56,7 @@
             ]
         },
         {
-            "UUID": "dev.penguin.kick.banuser",
+            "UUID": "io.pngz.kick.banuser",
             "Name": "Ban User",
             "Icon": "actions/ban_user",
             "Tooltip": "Ban a user from your channel",
@@ -65,7 +65,7 @@
             "States": [{ "Image": "actions/ban_user" }]
         },
         {
-            "UUID": "dev.penguin.kick.unbanuser",
+            "UUID": "io.pngz.kick.unbanuser",
             "Name": "Unban User",
             "Icon": "actions/unban_user",
             "Tooltip": "Unban a user from your channel",
@@ -74,7 +74,7 @@
             "States": [{ "Image": "actions/unban_user" }]
         },
         {
-            "UUID": "dev.penguin.kick.muteuser",
+            "UUID": "io.pngz.kick.muteuser",
             "Name": "Mute User",
             "Icon": "actions/mute_user",
             "Tooltip": "Mute a user in your channel",

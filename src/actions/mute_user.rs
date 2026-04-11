@@ -9,7 +9,7 @@ pub struct MuteUserAction;
 #[async_trait]
 impl Action for MuteUserAction {
     type Settings = MuteUserSettings;
-    const UUID: &'static str = "dev.penguin.kick.muteuser";
+    const UUID: &'static str = "io.pngz.kick.muteuser";
 
     async fn will_appear(&self, instance: &Instance, settings: &Self::Settings) -> OpenActionResult<()> {
         if let Some(l) = &settings.button_label { crate::auth_handler::set_bold_title(instance, Some(l.as_str())).await?; }
